@@ -1,0 +1,62 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+  <p>{frontmatter.pubDate.toString().slice(0, 10)}</p>
+  <p><em>{frontmatter.description}</em></p>
+  <p>Written by: {frontmatter.author}</p>
+  <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+
+  <div class="tags">
+    {
+      frontmatter.tags.map((tag) => (
+        <p class="tag">
+          <a href={`/tags/${tag}`}>{tag}</a>
+        </p>
+      ))
+    }
+  </div>
+
+  <style>
+    body {
+      background-color: lightpink;
+    }
+    a {
+      color: #00539f; /* Default color */
+      text-decoration: none; /* Optional: Remove underline */
+      transition: color 0.3s ease; /* Smooth color transition */
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      margin: 0.25em;
+      border: dotted 1px #a1a1a1;
+      border-radius: 0.5em;
+      padding: 0.5em 1em;
+      font-size: 1.15em;
+      background-color: #f8fcfd;
+      color: #000; /* Default text color */
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+    }
+
+    .tag:hover {
+      background-color: #ff1493; /* Deep pink */
+      color: #fff; /* White text */
+      border-color: #ff1493; /* Optional: Match border to hover color */
+    }
+
+    .tag:hover a {
+      color: #fff; /* White text for link on hover */
+    }
+  </style>
+
+  <slot />
+</BaseLayout>
