@@ -80,8 +80,23 @@ html {
         display: none;
       }
 
-    body {
-      background-color: #f7e0d9;
-    }  
+
   
+    html.dark {
+      background-color: #0e06b0;
+      color: #daf111;
+    }
+    
+    .dark .nav-links a {
+      color: #d3e876;
+    }
+
+    .dark a {
+      color: #d3e876;
+    }
+
+    .dark a:visited {
+      color: #e8a276;
+    }
+
   }
